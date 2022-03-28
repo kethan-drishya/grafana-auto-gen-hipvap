@@ -1,0 +1,596 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": "CSV",
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "target": {
+                    "limit": 100,
+                    "matchAny": false,
+                    "tags": [],
+                    "type": "dashboard"
+                },
+                "type": "dashboard"
+            }
+        ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 2,
+    "iteration": 1648102514924,
+    "links": [
+        {
+            "asDropdown": false,
+            "icon": "dashboard",
+            "includeVars": false,
+            "keepTime": false,
+            "tags": [],
+            "targetBlank": false,
+            "title": "Home",
+            "tooltip": "",
+            "type": "link",
+            "url": "/d/b2J-L6Enz/Home?orgId=1"
+        },
+        {
+            "asDropdown": false,
+            "icon": "dashboard",
+            "includeVars": false,
+            "keepTime": false,
+            "tags": [],
+            "targetBlank": false,
+            "title": "All Tags Board",
+            "tooltip": "",
+            "type": "link",
+            "url": "/d/c8XO9aQmWC/All-Tags-Board?orgId=1"
+        },
+        {
+            "asDropdown": false,
+            "icon": "dashboard",
+            "includeVars": false,
+            "keepTime": false,
+            "tags": [],
+            "targetBlank": false,
+            "title": "Assets Board",
+            "tooltip": "",
+            "type": "link",
+            "url": "/d/NeDIfi0d3n/Assets-Board?orgId=1"
+        },
+        {
+            "asDropdown": false,
+            "icon": "dashboard",
+            "includeVars": false,
+            "keepTime": false,
+            "tags": [],
+            "targetBlank": false,
+            "title": "Manual Tags Board",
+            "tooltip": "",
+            "type": "link",
+            "url": "/d/kqn3qfGu6Q/Manual-Tags-Board?orgId=1"
+        },
+        {
+            "asDropdown": false,
+            "icon": "dashboard",
+            "includeVars": false,
+            "keepTime": false,
+            "tags": [],
+            "targetBlank": false,
+            "title": "Tests Board",
+            "tooltip": "",
+            "type": "link",
+            "url": "/d/1V2FdOtaO0/Tests-Board?orgId=1"
+        },
+        {
+            "asDropdown": false,
+            "icon": "dashboard",
+            "includeVars": false,
+            "keepTime": false,
+            "tags": [],
+            "targetBlank": false,
+            "title": "HT Coefficient Board",
+            "tooltip": "",
+            "type": "link",
+            "url": "/d/PVEo3uCwNj/HT-Coefficient-Board?orgId=1"
+        }
+    ],
+    "liveNow": false,
+    "panels": [
+        {
+            "datasource": {
+                "type": "grafana-timestream-datasource",
+                "uid": "P45460985913E4ED4"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 0,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineInterpolation": "linear",
+                        "lineStyle": {
+                            "fill": "solid"
+                        },
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "always",
+                        "spanNulls": true,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 7,
+                "w": 11,
+                "x": 0,
+                "y": 0
+            },
+            "id": 39,
+            "options": {
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "right"
+                },
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "8.4.1",
+            "targets": [
+                {
+                    "database": "\"hipvap-timestreamdb\"",
+                    "datasource": {
+                        "type": "grafana-timestream-datasource",
+                        "uid": "P45460985913E4ED4"
+                    },
+                    "decimalSeparator": ".",
+                    "delimiter": ",",
+                    "header": true,
+                    "ignoreUnknown": false,
+                    "measure": "value",
+                    "rawQuery": "with ds as (\r\nSELECT tag, CREATE_TIME_SERIES(time, measure_value::double) as _ \r\nFROM $__database.$__table \r\nwhere $__timeFilter\r\ngroup by tag )\r\nselect tag, _  from ds\r\n\r\n\r\n",
+                    "refId": "A",
+                    "schema": [
+                        {
+                            "name": "",
+                            "type": "string"
+                        }
+                    ],
+                    "skipRows": 0,
+                    "table": "\"hipvap-timestream-test\""
+                }
+            ],
+            "title": "All Tags Timeseries",
+            "transparent": true,
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "grafana-timestream-datasource",
+                "uid": "P45460985913E4ED4"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 0,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "auto",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 12,
+                "x": 12,
+                "y": 0
+            },
+            "id": 32,
+            "options": {
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom"
+                },
+                "tooltip": {
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "8.4.1",
+            "targets": [
+                {
+                    "database": "\"hipvap-timestreamdb\"",
+                    "datasource": {
+                        "type": "grafana-timestream-datasource",
+                        "uid": "P45460985913E4ED4"
+                    },
+                    "decimalSeparator": ".",
+                    "delimiter": ",",
+                    "header": true,
+                    "ignoreUnknown": false,
+                    "measure": "value",
+                    "rawQuery": "SELECT * FROM $__database.$__table where $__timeFilter \r\nand tag = '$Tags' LIMIT 10",
+                    "refId": "A",
+                    "schema": [
+                        {
+                            "name": "",
+                            "type": "string"
+                        }
+                    ],
+                    "skipRows": 0,
+                    "table": "\"hipvap-timestream-test\""
+                }
+            ],
+            "title": "$Tags Timeseries",
+            "transparent": true,
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "grafana-timestream-datasource",
+                "uid": "P45460985913E4ED4"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "align": "auto",
+                        "displayMode": "auto"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 12,
+                "x": 0,
+                "y": 7
+            },
+            "id": 37,
+            "options": {
+                "footer": {
+                    "fields": "",
+                    "reducer": [
+                        "sum"
+                    ],
+                    "show": false
+                },
+                "showHeader": true
+            },
+            "pluginVersion": "8.4.1",
+            "targets": [
+                {
+                    "database": "\"hipvap-timestreamdb\"",
+                    "datasource": {
+                        "type": "grafana-timestream-datasource",
+                        "uid": "P45460985913E4ED4"
+                    },
+                    "decimalSeparator": ".",
+                    "delimiter": ",",
+                    "header": true,
+                    "ignoreUnknown": false,
+                    "measure": "value",
+                    "rawQuery": "SELECT tag, \r\nmax(measure_value::double) as max_value, \r\nmin(measure_value::double) as min_value,\r\navg(measure_value::double) as avg_value,\r\nstddev(measure_value::double) as std\r\nFROM $__database.$__table group  by tag",
+                    "refId": "A",
+                    "schema": [
+                        {
+                            "name": "",
+                            "type": "string"
+                        }
+                    ],
+                    "skipRows": 0,
+                    "table": "\"hipvap-timestream-test\""
+                }
+            ],
+            "title": "All Tags Descriptive Stats",
+            "transparent": true,
+            "type": "table"
+        },
+        {
+            "datasource": {
+                "type": "grafana-timestream-datasource",
+                "uid": "P45460985913E4ED4"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "fillOpacity": 80,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 1
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "short"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 7,
+                "w": 12,
+                "x": 12,
+                "y": 8
+            },
+            "id": 34,
+            "options": {
+                "bucketOffset": 0,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom"
+                }
+            },
+            "pluginVersion": "8.4.1",
+            "targets": [
+                {
+                    "database": "\"hipvap-timestreamdb\"",
+                    "datasource": {
+                        "type": "grafana-timestream-datasource",
+                        "uid": "P45460985913E4ED4"
+                    },
+                    "decimalSeparator": ".",
+                    "delimiter": ",",
+                    "header": true,
+                    "ignoreUnknown": false,
+                    "measure": "value",
+                    "rawQuery": "SELECT  time, measure_value::double FROM $__database.$__table where tag = '$Tags'\r\nand $__timeFilter\r\n",
+                    "refId": "A",
+                    "schema": [
+                        {
+                            "name": "",
+                            "type": "string"
+                        }
+                    ],
+                    "skipRows": 0,
+                    "table": "\"hipvap-timestream-test\""
+                }
+            ],
+            "title": "$Tags Distribution",
+            "transformations": [],
+            "transparent": true,
+            "type": "histogram"
+        }
+    ],
+    "refresh": false,
+    "schemaVersion": 35,
+    "style": "dark",
+    "tags": [
+        "asset"
+    ],
+    "templating": {
+        "list": [
+            {
+                "current": {
+                    "selected": true,
+                    "text": "FIT10221.VALUE",
+                    "value": "FIT10221.VALUE"
+                },
+                "hide": 0,
+                "includeAll": false,
+                "multi": false,
+                "name": "Tags",
+                "options": [
+                    {
+                        "selected": true,
+                        "text": "FIT10221.VALUE",
+                        "value": "FIT10221.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TT10221.VALUE",
+                        "value": "TT10221.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10211.VALUE",
+                        "value": "TIT10211.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10201.VALUE",
+                        "value": "PIT10201.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10208.VALUE",
+                        "value": "TIT10208.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10202.VALUE",
+                        "value": "TIT10202.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10210.VALUE",
+                        "value": "PIT10210.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PDI10201.VALUE",
+                        "value": "PDI10201.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIC10202.VALUE",
+                        "value": "TIC10202.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10204.VALUE",
+                        "value": "TIT10204.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10203.VALUE",
+                        "value": "PIT10203.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10207.VALUE",
+                        "value": "PIT10207.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PDI10203.VALUE",
+                        "value": "PDI10203.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIT10209.VALUE",
+                        "value": "FIT10209.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TT10209.VALUE",
+                        "value": "TT10209.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10220A.VALUE",
+                        "value": "TIT10220A.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10220B.VALUE",
+                        "value": "TIT10220B.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10220C.VALUE",
+                        "value": "TIT10220C.VALUE"
+                    }
+                ],
+                "query": "FIT10221.VALUE,TT10221.VALUE,TIT10211.VALUE,PIT10201.VALUE,TIT10208.VALUE,TIT10202.VALUE,PIT10210.VALUE,PDI10201.VALUE,TIC10202.VALUE,TIT10204.VALUE,PIT10203.VALUE,PIT10207.VALUE,PDI10203.VALUE,FIT10209.VALUE,TT10209.VALUE,TIT10220A.VALUE,TIT10220B.VALUE,TIT10220C.VALUE",
+                "skipUrlSync": false,
+                "type": "custom"
+            }
+        ]
+    },
+    "time": {
+        "from": "now-24h",
+        "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "utc",
+    "title": "IFSG Preheater (E-102)",
+    "uid": "55YnBKNhPd",
+    "version": 154,
+    "weekStart": ""
+}

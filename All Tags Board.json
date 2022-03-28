@@ -1,0 +1,1684 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": "CSV",
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "target": {
+                    "limit": 100,
+                    "matchAny": false,
+                    "tags": [],
+                    "type": "dashboard"
+                },
+                "type": "dashboard"
+            }
+        ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 2,
+    "iteration": 1648102514924,
+    "links": [
+        {
+            "asDropdown": false,
+            "icon": "dashboard",
+            "includeVars": false,
+            "keepTime": false,
+            "tags": [],
+            "targetBlank": false,
+            "title": "Home",
+            "tooltip": "",
+            "type": "link",
+            "url": "/d/b2J-L6Enz/Home?orgId=1"
+        },
+        {
+            "asDropdown": false,
+            "icon": "dashboard",
+            "includeVars": false,
+            "keepTime": false,
+            "tags": [],
+            "targetBlank": false,
+            "title": "Assets Board",
+            "tooltip": "",
+            "type": "link",
+            "url": "/d/NeDIfi0d3n/Assets-Board?orgId=1"
+        },
+        {
+            "asDropdown": false,
+            "icon": "dashboard",
+            "includeVars": false,
+            "keepTime": false,
+            "tags": [],
+            "targetBlank": false,
+            "title": "Manual Tags Board",
+            "tooltip": "",
+            "type": "link",
+            "url": "/d/kqn3qfGu6Q/Manual-Tags-Board?orgId=1"
+        },
+        {
+            "asDropdown": false,
+            "icon": "dashboard",
+            "includeVars": false,
+            "keepTime": false,
+            "tags": [],
+            "targetBlank": false,
+            "title": "Tests Board",
+            "tooltip": "",
+            "type": "link",
+            "url": "/d/1V2FdOtaO0/Tests-Board?orgId=1"
+        },
+        {
+            "asDropdown": false,
+            "icon": "dashboard",
+            "includeVars": false,
+            "keepTime": false,
+            "tags": [],
+            "targetBlank": false,
+            "title": "HT Coefficient Board",
+            "tooltip": "",
+            "type": "link",
+            "url": "/d/PVEo3uCwNj/HT-Coefficient-Board?orgId=1"
+        }
+    ],
+    "liveNow": false,
+    "panels": [
+        {
+            "datasource": {
+                "type": "grafana-timestream-datasource",
+                "uid": "P45460985913E4ED4"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 0,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineInterpolation": "linear",
+                        "lineStyle": {
+                            "fill": "solid"
+                        },
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "always",
+                        "spanNulls": true,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 7,
+                "w": 11,
+                "x": 0,
+                "y": 0
+            },
+            "id": 39,
+            "options": {
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "right"
+                },
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "8.4.1",
+            "targets": [
+                {
+                    "database": "\"hipvap-timestreamdb\"",
+                    "datasource": {
+                        "type": "grafana-timestream-datasource",
+                        "uid": "P45460985913E4ED4"
+                    },
+                    "decimalSeparator": ".",
+                    "delimiter": ",",
+                    "header": true,
+                    "ignoreUnknown": false,
+                    "measure": "value",
+                    "rawQuery": "with ds as (\r\nSELECT tag, CREATE_TIME_SERIES(time, measure_value::double) as _ \r\nFROM $__database.$__table \r\nwhere $__timeFilter\r\ngroup by tag )\r\nselect tag, _  from ds\r\n\r\n\r\n",
+                    "refId": "A",
+                    "schema": [
+                        {
+                            "name": "",
+                            "type": "string"
+                        }
+                    ],
+                    "skipRows": 0,
+                    "table": "\"hipvap-timestream-test\""
+                }
+            ],
+            "title": "All Tags Timeseries",
+            "transparent": true,
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "grafana-timestream-datasource",
+                "uid": "P45460985913E4ED4"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 0,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "auto",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 12,
+                "x": 12,
+                "y": 0
+            },
+            "id": 32,
+            "options": {
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom"
+                },
+                "tooltip": {
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "8.4.1",
+            "targets": [
+                {
+                    "database": "\"hipvap-timestreamdb\"",
+                    "datasource": {
+                        "type": "grafana-timestream-datasource",
+                        "uid": "P45460985913E4ED4"
+                    },
+                    "decimalSeparator": ".",
+                    "delimiter": ",",
+                    "header": true,
+                    "ignoreUnknown": false,
+                    "measure": "value",
+                    "rawQuery": "SELECT * FROM $__database.$__table where $__timeFilter \r\nand tag = '$Tags' LIMIT 10",
+                    "refId": "A",
+                    "schema": [
+                        {
+                            "name": "",
+                            "type": "string"
+                        }
+                    ],
+                    "skipRows": 0,
+                    "table": "\"hipvap-timestream-test\""
+                }
+            ],
+            "title": "$Tags Timeseries",
+            "transparent": true,
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "grafana-timestream-datasource",
+                "uid": "P45460985913E4ED4"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "align": "auto",
+                        "displayMode": "auto"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 12,
+                "x": 0,
+                "y": 7
+            },
+            "id": 37,
+            "options": {
+                "footer": {
+                    "fields": "",
+                    "reducer": [
+                        "sum"
+                    ],
+                    "show": false
+                },
+                "showHeader": true
+            },
+            "pluginVersion": "8.4.1",
+            "targets": [
+                {
+                    "database": "\"hipvap-timestreamdb\"",
+                    "datasource": {
+                        "type": "grafana-timestream-datasource",
+                        "uid": "P45460985913E4ED4"
+                    },
+                    "decimalSeparator": ".",
+                    "delimiter": ",",
+                    "header": true,
+                    "ignoreUnknown": false,
+                    "measure": "value",
+                    "rawQuery": "SELECT tag, \r\nmax(measure_value::double) as max_value, \r\nmin(measure_value::double) as min_value,\r\navg(measure_value::double) as avg_value,\r\nstddev(measure_value::double) as std\r\nFROM $__database.$__table group  by tag",
+                    "refId": "A",
+                    "schema": [
+                        {
+                            "name": "",
+                            "type": "string"
+                        }
+                    ],
+                    "skipRows": 0,
+                    "table": "\"hipvap-timestream-test\""
+                }
+            ],
+            "title": "All Tags Descriptive Stats",
+            "transparent": true,
+            "type": "table"
+        },
+        {
+            "datasource": {
+                "type": "grafana-timestream-datasource",
+                "uid": "P45460985913E4ED4"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "fillOpacity": 80,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 1
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "short"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 7,
+                "w": 12,
+                "x": 12,
+                "y": 8
+            },
+            "id": 34,
+            "options": {
+                "bucketOffset": 0,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom"
+                }
+            },
+            "pluginVersion": "8.4.1",
+            "targets": [
+                {
+                    "database": "\"hipvap-timestreamdb\"",
+                    "datasource": {
+                        "type": "grafana-timestream-datasource",
+                        "uid": "P45460985913E4ED4"
+                    },
+                    "decimalSeparator": ".",
+                    "delimiter": ",",
+                    "header": true,
+                    "ignoreUnknown": false,
+                    "measure": "value",
+                    "rawQuery": "SELECT  time, measure_value::double FROM $__database.$__table where tag = '$Tags'\r\nand $__timeFilter\r\n",
+                    "refId": "A",
+                    "schema": [
+                        {
+                            "name": "",
+                            "type": "string"
+                        }
+                    ],
+                    "skipRows": 0,
+                    "table": "\"hipvap-timestream-test\""
+                }
+            ],
+            "title": "$Tags Distribution",
+            "transformations": [],
+            "transparent": true,
+            "type": "histogram"
+        }
+    ],
+    "refresh": false,
+    "schemaVersion": 35,
+    "style": "dark",
+    "tags": [
+        "hipvap"
+    ],
+    "templating": {
+        "list": [
+            {
+                "current": {
+                    "selected": true,
+                    "text": "FCF10509.VALUE",
+                    "value": "FCF10509.VALUE"
+                },
+                "hide": 0,
+                "includeAll": false,
+                "multi": false,
+                "name": "Tags",
+                "options": [
+                    {
+                        "selected": true,
+                        "text": "FCF10509.VALUE",
+                        "value": "FCF10509.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FDI10102.VALUE",
+                        "value": "FDI10102.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIT10102.VALUE",
+                        "value": "FIT10102.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIT10209.VALUE",
+                        "value": "FIT10209.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIT10221.VALUE",
+                        "value": "FIT10221.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIT10304.VALUE",
+                        "value": "FIT10304.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIT10502.VALUE",
+                        "value": "FIT10502.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIT10509.VALUE",
+                        "value": "FIT10509.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIT10802.VALUE",
+                        "value": "FIT10802.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FT11001.VALUE",
+                        "value": "FT11001.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LDI10505.VALUE",
+                        "value": "LDI10505.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIT10004.VALUE",
+                        "value": "LIT10004.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIT10505A.VALUE",
+                        "value": "LIT10505A.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIT10505B.VALUE",
+                        "value": "LIT10505B.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIT11104.VALUE",
+                        "value": "LIT11104.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIT11807.VALUE",
+                        "value": "LIT11807.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIT11809.VALUE",
+                        "value": "LIT11809.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PDI10201.VALUE",
+                        "value": "PDI10201.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PDI10203.VALUE",
+                        "value": "PDI10203.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PDI10303.VALUE",
+                        "value": "PDI10303.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PDI10405.VALUE",
+                        "value": "PDI10405.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PDT11806.VALUE",
+                        "value": "PDT11806.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10003.VALUE",
+                        "value": "PIT10003.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10101.VALUE",
+                        "value": "PIT10101.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10201.VALUE",
+                        "value": "PIT10201.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10203.VALUE",
+                        "value": "PIT10203.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10207.VALUE",
+                        "value": "PIT10207.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10210.VALUE",
+                        "value": "PIT10210.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10303.VALUE",
+                        "value": "PIT10303.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10403.VALUE",
+                        "value": "PIT10403.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10405.VALUE",
+                        "value": "PIT10405.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10408.VALUE",
+                        "value": "PIT10408.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10501.VALUE",
+                        "value": "PIT10501.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10511.VALUE",
+                        "value": "PIT10511.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10601.VALUE",
+                        "value": "PIT10601.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10801.VALUE",
+                        "value": "PIT10801.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT11002.VALUE",
+                        "value": "PIT11002.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT11003.VALUE",
+                        "value": "PIT11003.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT11103.VALUE",
+                        "value": "PIT11103.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT11803.VALUE",
+                        "value": "PIT11803.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10202.VALUE",
+                        "value": "TIT10202.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10204.VALUE",
+                        "value": "TIT10204.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10208.VALUE",
+                        "value": "TIT10208.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10211.VALUE",
+                        "value": "TIT10211.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10220A.VALUE",
+                        "value": "TIT10220A.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10220B.VALUE",
+                        "value": "TIT10220B.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10220C.VALUE",
+                        "value": "TIT10220C.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10401.VALUE",
+                        "value": "TIT10401.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10402.VALUE",
+                        "value": "TIT10402.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10406.VALUE",
+                        "value": "TIT10406.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10409.VALUE",
+                        "value": "TIT10409.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10420A.VALUE",
+                        "value": "TIT10420A.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10420B.VALUE",
+                        "value": "TIT10420B.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10420C.VALUE",
+                        "value": "TIT10420C.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10420D.VALUE",
+                        "value": "TIT10420D.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT11102.VALUE",
+                        "value": "TIT11102.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT11407.VALUE",
+                        "value": "TIT11407.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT11808.VALUE",
+                        "value": "TIT11808.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIC10102.SP",
+                        "value": "FIC10102.SP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIC10102.PV",
+                        "value": "FIC10102.PV"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIC10102.SO",
+                        "value": "FIC10102.SO"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIC10102.KP",
+                        "value": "FIC10102.KP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIC10102.KI",
+                        "value": "FIC10102.KI"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIC10102.KD",
+                        "value": "FIC10102.KD"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIC10004.SP",
+                        "value": "LIC10004.SP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIC10004.PV",
+                        "value": "LIC10004.PV"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIC10004.SO",
+                        "value": "LIC10004.SO"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIC10004.KP",
+                        "value": "LIC10004.KP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIC10004.KI",
+                        "value": "LIC10004.KI"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIC10004.KD",
+                        "value": "LIC10004.KD"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIC10505.SP",
+                        "value": "LIC10505.SP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIC10505.PV",
+                        "value": "LIC10505.PV"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIC10505.SO",
+                        "value": "LIC10505.SO"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIC10505.KP",
+                        "value": "LIC10505.KP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIC10505.KI",
+                        "value": "LIC10505.KI"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIC10505.KD",
+                        "value": "LIC10505.KD"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC10003.SP",
+                        "value": "PIC10003.SP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC10003.PV",
+                        "value": "PIC10003.PV"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC10003.SO",
+                        "value": "PIC10003.SO"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC10003.KP",
+                        "value": "PIC10003.KP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC10003.KI",
+                        "value": "PIC10003.KI"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC10003.KD",
+                        "value": "PIC10003.KD"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC10101.SP",
+                        "value": "PIC10101.SP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC10101.PV",
+                        "value": "PIC10101.PV"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC10101.SO",
+                        "value": "PIC10101.SO"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC10101.KP",
+                        "value": "PIC10101.KP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC10101.KI",
+                        "value": "PIC10101.KI"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC10101.KD",
+                        "value": "PIC10101.KD"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC11803.SP",
+                        "value": "PIC11803.SP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC11803.PV",
+                        "value": "PIC11803.PV"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC11803.SO",
+                        "value": "PIC11803.SO"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC11803.KP",
+                        "value": "PIC11803.KP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC11803.KI",
+                        "value": "PIC11803.KI"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC11803.KD",
+                        "value": "PIC11803.KD"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIC10202.SP",
+                        "value": "TIC10202.SP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIC10202.PV",
+                        "value": "TIC10202.PV"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIC10202.SO",
+                        "value": "TIC10202.SO"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIC10202.KP",
+                        "value": "TIC10202.KP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIC10202.KI",
+                        "value": "TIC10202.KI"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIC10202.KD",
+                        "value": "TIC10202.KD"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIC11407.SP",
+                        "value": "TIC11407.SP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIC11407.PV",
+                        "value": "TIC11407.PV"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIC11407.SO",
+                        "value": "TIC11407.SO"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIC11407.KP",
+                        "value": "TIC11407.KP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIC11407.KI",
+                        "value": "TIC11407.KI"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIC11407.KD",
+                        "value": "TIC11407.KD"
+                    },
+                    {
+                        "selected": false,
+                        "text": "SC103VFDMAN.CVEU",
+                        "value": "SC103VFDMAN.CVEU"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10003.HSDSP",
+                        "value": "PIT10003.HSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIT10004.HSDSP",
+                        "value": "LIT10004.HSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIT10004.LSDSP",
+                        "value": "LIT10004.LSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10101.HSDSP",
+                        "value": "PIT10101.HSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10101.LSDSP",
+                        "value": "PIT10101.LSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIT11807.LSDSP",
+                        "value": "LIT11807.LSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10208.HSDSP",
+                        "value": "TIT10208.HSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT11803.LSDSP",
+                        "value": "PIT11803.LSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT11808.HSDSP",
+                        "value": "TIT11808.HSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIT11809.LSDSP",
+                        "value": "LIT11809.LSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10501.HSDSP",
+                        "value": "PIT10501.HSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10511.HSDSP",
+                        "value": "PIT10511.HSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10601.HSDSP",
+                        "value": "PIT10601.HSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT11103.HSDSP",
+                        "value": "PIT11103.HSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIT11104.LSDSP",
+                        "value": "LIT11104.LSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT10801.HSDSP",
+                        "value": "PIT10801.HSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT11003.HSDSP",
+                        "value": "PIT11003.HSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIT11002.LSDSP",
+                        "value": "PIT11002.LSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIT10505A.HSDSP",
+                        "value": "LIT10505A.HSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIT10505A.LSDSP",
+                        "value": "LIT10505A.LSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIT10505A.LLSDSP",
+                        "value": "LIT10505A.LLSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIT10505B.HSDSP",
+                        "value": "LIT10505B.HSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIT10505B.LSDSP",
+                        "value": "LIT10505B.LSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIT10505B.LLSDSP",
+                        "value": "LIT10505B.LLSDSP"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_MAIN[0]",
+                        "value": "MBDATA_PWR_MAIN[0]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_MAIN[1]",
+                        "value": "MBDATA_PWR_MAIN[1]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_MAIN[2]",
+                        "value": "MBDATA_PWR_MAIN[2]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_MAIN[3]",
+                        "value": "MBDATA_PWR_MAIN[3]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_MAIN[4]",
+                        "value": "MBDATA_PWR_MAIN[4]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_MAIN[5]",
+                        "value": "MBDATA_PWR_MAIN[5]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_MAIN[6]",
+                        "value": "MBDATA_PWR_MAIN[6]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_MAIN[7]",
+                        "value": "MBDATA_PWR_MAIN[7]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_MAIN[8]",
+                        "value": "MBDATA_PWR_MAIN[8]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_MAIN[9]",
+                        "value": "MBDATA_PWR_MAIN[9]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_MAIN[10]",
+                        "value": "MBDATA_PWR_MAIN[10]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_MAIN[11]",
+                        "value": "MBDATA_PWR_MAIN[11]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_MAIN[12]",
+                        "value": "MBDATA_PWR_MAIN[12]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_MAIN[13]",
+                        "value": "MBDATA_PWR_MAIN[13]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_MAIN[14]",
+                        "value": "MBDATA_PWR_MAIN[14]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_DIST[0]",
+                        "value": "MBDATA_PWR_DIST[0]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_DIST[1]",
+                        "value": "MBDATA_PWR_DIST[1]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_DIST[2]",
+                        "value": "MBDATA_PWR_DIST[2]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_DIST[3]",
+                        "value": "MBDATA_PWR_DIST[3]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_DIST[4]",
+                        "value": "MBDATA_PWR_DIST[4]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_DIST[5]",
+                        "value": "MBDATA_PWR_DIST[5]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_DIST[6]",
+                        "value": "MBDATA_PWR_DIST[6]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_DIST[7]",
+                        "value": "MBDATA_PWR_DIST[7]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_DIST[8]",
+                        "value": "MBDATA_PWR_DIST[8]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_DIST[9]",
+                        "value": "MBDATA_PWR_DIST[9]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_DIST[10]",
+                        "value": "MBDATA_PWR_DIST[10]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_DIST[11]",
+                        "value": "MBDATA_PWR_DIST[11]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_DIST[12]",
+                        "value": "MBDATA_PWR_DIST[12]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_DIST[13]",
+                        "value": "MBDATA_PWR_DIST[13]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "MBDATA_PWR_DIST[14]",
+                        "value": "MBDATA_PWR_DIST[14]"
+                    },
+                    {
+                        "selected": false,
+                        "text": "BMS: Burner.oPrgTime_Elapsed",
+                        "value": "BMS: Burner.oPrgTime_Elapsed"
+                    },
+                    {
+                        "selected": false,
+                        "text": "BMS: LFP_Time_Remains",
+                        "value": "BMS: LFP_Time_Remains"
+                    },
+                    {
+                        "selected": false,
+                        "text": "BMS: PostPrgTime_Remains",
+                        "value": "BMS: PostPrgTime_Remains"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TC_StPt_OperX10_INT",
+                        "value": "TC_StPt_OperX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PLC: TC_SetPt_ActiveX10_INT",
+                        "value": "PLC: TC_SetPt_ActiveX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PLc: TC10910_CV_ManX10_INT",
+                        "value": "PLc: TC10910_CV_ManX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PLC: TC_LtoffPosX10_INT",
+                        "value": "PLC: TC_LtoffPosX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PLC: FiringRate_AOX10_INT",
+                        "value": "PLC: FiringRate_AOX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10904_IC1_TempX10_INT",
+                        "value": "TIT10904_IC1_TempX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10904_IC1_HiHiSetPtX10_INT",
+                        "value": "TIT10904_IC1_HiHiSetPtX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10905_IC2_TempX10_INT",
+                        "value": "TIT10905_IC2_TempX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10905_IC2_HiHiSetPtX10_INT",
+                        "value": "TIT10905_IC2_HiHiSetPtX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10906_OC1_TempX10_INT",
+                        "value": "TIT10906_OC1_TempX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10906_OC1_HiHiSetPtX10_INT",
+                        "value": "TIT10906_OC1_HiHiSetPtX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10909_OC2_TempX10_INT",
+                        "value": "TIT10909_OC2_TempX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10909_OC2_HiHiSetPtX10_INT",
+                        "value": "TIT10909_OC2_HiHiSetPtX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIT10902_IC1_FlowX10_INT",
+                        "value": "FIT10902_IC1_FlowX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIT10902_IC1_LoLoSetPtX10_INT",
+                        "value": "FIT10902_IC1_LoLoSetPtX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIT10903_IC2_FlowX10_INT",
+                        "value": "FIT10903_IC2_FlowX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIT10903_IC2_LoLoSetPtX10_INT",
+                        "value": "FIT10903_IC2_LoLoSetPtX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIT10908_OC1_FlowX10_INT",
+                        "value": "FIT10908_OC1_FlowX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIT10908_OC1_LoLoSetPtX10_INT",
+                        "value": "FIT10908_OC1_LoLoSetPtX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIT10907_OC2_FlowX10_INT",
+                        "value": "FIT10907_OC2_FlowX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIT10907_OC2_LoLoSetPtX10_INT",
+                        "value": "FIT10907_OC2_LoLoSetPtX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10914_Stack_TempX10_INT",
+                        "value": "TIT10914_Stack_TempX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10914_Stack_HiHiSetPtX10_INT",
+                        "value": "TIT10914_Stack_HiHiSetPtX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "BY11001_FlameStrengthX10_INT",
+                        "value": "BY11001_FlameStrengthX10_INT"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TI10007.VALUE",
+                        "value": "TI10007.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIC10004.VALUE",
+                        "value": "LIC10004.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC10003.VALUE",
+                        "value": "PIC10003.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PDI10104.VALUE",
+                        "value": "PDI10104.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC10101.VALUE",
+                        "value": "PIC10101.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FIC1010.VALUE",
+                        "value": "FIC1010.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TT10221.VALUE",
+                        "value": "TT10221.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIC10202.VALUE",
+                        "value": "TIC10202.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TT10209.VALUE",
+                        "value": "TT10209.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TT10304.VALUE",
+                        "value": "TT10304.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FI11810.VALUE",
+                        "value": "FI11810.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC11803.VALUE",
+                        "value": "PIC11803.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PDI11806.VALUE",
+                        "value": "PDI11806.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TI11801.VALUE",
+                        "value": "TI11801.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TT10502.VALUE",
+                        "value": "TT10502.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FQI10502.VALUE",
+                        "value": "FQI10502.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LQI10505.VALUE",
+                        "value": "LQI10505.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LIC10505.VALUE",
+                        "value": "LIC10505.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PDI10512.VALUE",
+                        "value": "PDI10512.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TI10509.VALUE",
+                        "value": "TI10509.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "FQI10509.VALUE",
+                        "value": "FQI10509.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TI10604.VALUE",
+                        "value": "TI10604.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LI10603.VALUE",
+                        "value": "LI10603.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PIC10601.VALUE",
+                        "value": "PIC10601.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TI11401.VALUE",
+                        "value": "TI11401.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TI11405.VALUE",
+                        "value": "TI11405.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PI11403.VALUE",
+                        "value": "PI11403.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PI10803.VALUE",
+                        "value": "PI10803.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PI10804.VALUE",
+                        "value": "PI10804.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TT10802.VALUE",
+                        "value": "TT10802.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10901",
+                        "value": "TIT10901"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10907",
+                        "value": "TIT10907"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TIT10910",
+                        "value": "TIT10910"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PI109113",
+                        "value": "PI109113"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TT11001.VALUE",
+                        "value": "TT11001.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PI11004.VALUE",
+                        "value": "PI11004.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PI11007.VALUE",
+                        "value": "PI11007.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PI11012.VALUE",
+                        "value": "PI11012.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PI11014.VALUE",
+                        "value": "PI11014.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TI12504.VALUE",
+                        "value": "TI12504.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LI12503.VALUE",
+                        "value": "LI12503.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TI12604.VALUE",
+                        "value": "TI12604.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LI12603.VALUE",
+                        "value": "LI12603.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LG12001.VALUE",
+                        "value": "LG12001.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "PI12003.VALUE",
+                        "value": "PI12003.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "ZC120.VALUE",
+                        "value": "ZC120.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LG12201.VALUE",
+                        "value": "LG12201.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "ZC122.VALUE",
+                        "value": "ZC122.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "TI12804.VALUE",
+                        "value": "TI12804.VALUE"
+                    },
+                    {
+                        "selected": false,
+                        "text": "LI12803.VALUE",
+                        "value": "LI12803.VALUE"
+                    }
+                ],
+                "query": "FCF10509.VALUE,FDI10102.VALUE,FIT10102.VALUE,FIT10209.VALUE,FIT10221.VALUE,FIT10304.VALUE,FIT10502.VALUE,FIT10509.VALUE,FIT10802.VALUE,FT11001.VALUE,LDI10505.VALUE,LIT10004.VALUE,LIT10505A.VALUE,LIT10505B.VALUE,LIT11104.VALUE,LIT11807.VALUE,LIT11809.VALUE,PDI10201.VALUE,PDI10203.VALUE,PDI10303.VALUE,PDI10405.VALUE,PDT11806.VALUE,PIT10003.VALUE,PIT10101.VALUE,PIT10201.VALUE,PIT10203.VALUE,PIT10207.VALUE,PIT10210.VALUE,PIT10303.VALUE,PIT10403.VALUE,PIT10405.VALUE,PIT10408.VALUE,PIT10501.VALUE,PIT10511.VALUE,PIT10601.VALUE,PIT10801.VALUE,PIT11002.VALUE,PIT11003.VALUE,PIT11103.VALUE,PIT11803.VALUE,TIT10202.VALUE,TIT10204.VALUE,TIT10208.VALUE,TIT10211.VALUE,TIT10220A.VALUE,TIT10220B.VALUE,TIT10220C.VALUE,TIT10401.VALUE,TIT10402.VALUE,TIT10406.VALUE,TIT10409.VALUE,TIT10420A.VALUE,TIT10420B.VALUE,TIT10420C.VALUE,TIT10420D.VALUE,TIT11102.VALUE,TIT11407.VALUE,TIT11808.VALUE,FIC10102.SP,FIC10102.PV,FIC10102.SO,FIC10102.KP,FIC10102.KI,FIC10102.KD,LIC10004.SP,LIC10004.PV,LIC10004.SO,LIC10004.KP,LIC10004.KI,LIC10004.KD,LIC10505.SP,LIC10505.PV,LIC10505.SO,LIC10505.KP,LIC10505.KI,LIC10505.KD,PIC10003.SP,PIC10003.PV,PIC10003.SO,PIC10003.KP,PIC10003.KI,PIC10003.KD,PIC10101.SP,PIC10101.PV,PIC10101.SO,PIC10101.KP,PIC10101.KI,PIC10101.KD,PIC11803.SP,PIC11803.PV,PIC11803.SO,PIC11803.KP,PIC11803.KI,PIC11803.KD,TIC10202.SP,TIC10202.PV,TIC10202.SO,TIC10202.KP,TIC10202.KI,TIC10202.KD,TIC11407.SP,TIC11407.PV,TIC11407.SO,TIC11407.KP,TIC11407.KI,TIC11407.KD,SC103VFDMAN.CVEU,PIT10003.HSDSP,LIT10004.HSDSP,LIT10004.LSDSP,PIT10101.HSDSP,PIT10101.LSDSP,LIT11807.LSDSP,TIT10208.HSDSP,PIT11803.LSDSP,TIT11808.HSDSP,LIT11809.LSDSP,PIT10501.HSDSP,PIT10511.HSDSP,PIT10601.HSDSP,PIT11103.HSDSP,LIT11104.LSDSP,PIT10801.HSDSP,PIT11003.HSDSP,PIT11002.LSDSP,LIT10505A.HSDSP,LIT10505A.LSDSP,LIT10505A.LLSDSP,LIT10505B.HSDSP,LIT10505B.LSDSP,LIT10505B.LLSDSP,MBDATA_PWR_MAIN[0],MBDATA_PWR_MAIN[1],MBDATA_PWR_MAIN[2],MBDATA_PWR_MAIN[3],MBDATA_PWR_MAIN[4],MBDATA_PWR_MAIN[5],MBDATA_PWR_MAIN[6],MBDATA_PWR_MAIN[7],MBDATA_PWR_MAIN[8],MBDATA_PWR_MAIN[9],MBDATA_PWR_MAIN[10],MBDATA_PWR_MAIN[11],MBDATA_PWR_MAIN[12],MBDATA_PWR_MAIN[13],MBDATA_PWR_MAIN[14],MBDATA_PWR_DIST[0],MBDATA_PWR_DIST[1],MBDATA_PWR_DIST[2],MBDATA_PWR_DIST[3],MBDATA_PWR_DIST[4],MBDATA_PWR_DIST[5],MBDATA_PWR_DIST[6],MBDATA_PWR_DIST[7],MBDATA_PWR_DIST[8],MBDATA_PWR_DIST[9],MBDATA_PWR_DIST[10],MBDATA_PWR_DIST[11],MBDATA_PWR_DIST[12],MBDATA_PWR_DIST[13],MBDATA_PWR_DIST[14],BMS: Burner.oPrgTime_Elapsed,BMS: LFP_Time_Remains,BMS: PostPrgTime_Remains,TC_StPt_OperX10_INT,PLC: TC_SetPt_ActiveX10_INT,PLc: TC10910_CV_ManX10_INT,PLC: TC_LtoffPosX10_INT,PLC: FiringRate_AOX10_INT,TIT10904_IC1_TempX10_INT,TIT10904_IC1_HiHiSetPtX10_INT,TIT10905_IC2_TempX10_INT,TIT10905_IC2_HiHiSetPtX10_INT,TIT10906_OC1_TempX10_INT,TIT10906_OC1_HiHiSetPtX10_INT,TIT10909_OC2_TempX10_INT,TIT10909_OC2_HiHiSetPtX10_INT,FIT10902_IC1_FlowX10_INT,FIT10902_IC1_LoLoSetPtX10_INT,FIT10903_IC2_FlowX10_INT,FIT10903_IC2_LoLoSetPtX10_INT,FIT10908_OC1_FlowX10_INT,FIT10908_OC1_LoLoSetPtX10_INT,FIT10907_OC2_FlowX10_INT,FIT10907_OC2_LoLoSetPtX10_INT,TIT10914_Stack_TempX10_INT,TIT10914_Stack_HiHiSetPtX10_INT,BY11001_FlameStrengthX10_INT,TI10007.VALUE,LIC10004.VALUE,PIC10003.VALUE,PDI10104.VALUE,PIC10101.VALUE,FIC1010.VALUE,TT10221.VALUE,TIC10202.VALUE,TT10209.VALUE,TT10304.VALUE,FI11810.VALUE,PIC11803.VALUE,PDI11806.VALUE,TI11801.VALUE,TT10502.VALUE,FQI10502.VALUE,LQI10505.VALUE,LIC10505.VALUE,PDI10512.VALUE,TI10509.VALUE,FQI10509.VALUE,TI10604.VALUE,LI10603.VALUE,PIC10601.VALUE,TI11401.VALUE,TI11405.VALUE,PI11403.VALUE,PI10803.VALUE,PI10804.VALUE,TT10802.VALUE,TIT10901,TIT10907,TIT10910,PI109113,TT11001.VALUE,PI11004.VALUE,PI11007.VALUE,PI11012.VALUE,PI11014.VALUE,TI12504.VALUE,LI12503.VALUE,TI12604.VALUE,LI12603.VALUE,LG12001.VALUE,PI12003.VALUE,ZC120.VALUE,LG12201.VALUE,ZC122.VALUE,TI12804.VALUE,LI12803.VALUE",
+                "skipUrlSync": false,
+                "type": "custom"
+            }
+        ]
+    },
+    "time": {
+        "from": "now-24h",
+        "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "utc",
+    "title": "All Tags Board",
+    "uid": "c8XO9aQmWC",
+    "version": 154,
+    "weekStart": ""
+}

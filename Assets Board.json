@@ -1,0 +1,144 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": "-- Grafana --",
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "target": {
+                    "limit": 100,
+                    "matchAny": false,
+                    "tags": [],
+                    "type": "dashboard"
+                },
+                "type": "dashboard"
+            }
+        ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 3,
+    "links": [
+        {
+            "asDropdown": false,
+            "icon": "dashboard",
+            "includeVars": false,
+            "keepTime": false,
+            "tags": [],
+            "targetBlank": false,
+            "title": "Home",
+            "tooltip": "",
+            "type": "link",
+            "url": "/d/b2J-L6Enz/Home?orgId=1"
+        },
+        {
+            "asDropdown": false,
+            "icon": "dashboard",
+            "includeVars": false,
+            "keepTime": false,
+            "tags": [],
+            "targetBlank": false,
+            "title": "All Tags Board",
+            "tooltip": "",
+            "type": "link",
+            "url": "/d/c8XO9aQmWC/All-Tags-Board?orgId=1"
+        },
+        {
+            "asDropdown": false,
+            "icon": "dashboard",
+            "includeVars": false,
+            "keepTime": false,
+            "tags": [],
+            "targetBlank": false,
+            "title": "Manual Tags Board",
+            "tooltip": "",
+            "type": "link",
+            "url": "/d/kqn3qfGu6Q/Manual-Tags-Board?orgId=1"
+        },
+        {
+            "asDropdown": false,
+            "icon": "dashboard",
+            "includeVars": false,
+            "keepTime": false,
+            "tags": [],
+            "targetBlank": false,
+            "title": "Tests Board",
+            "tooltip": "",
+            "type": "link",
+            "url": "/d/1V2FdOtaO0/Tests-Board?orgId=1"
+        },
+        {
+            "asDropdown": false,
+            "icon": "dashboard",
+            "includeVars": false,
+            "keepTime": false,
+            "tags": [],
+            "targetBlank": false,
+            "title": "HT Coefficient Board",
+            "tooltip": "",
+            "type": "link",
+            "url": "/d/PVEo3uCwNj/HT-Coefficient-Board?orgId=1"
+        }
+    ],
+    "liveNow": false,
+    "panels": [
+        {
+            "gridPos": {
+                "h": 6,
+                "w": 24,
+                "x": 0,
+                "y": 0
+            },
+            "id": 38,
+            "options": {
+                "content": "## Available Assets  \r\n[Feed Drum (V-100)](/d/coxym8SAbo/feed-drum-v-100?&from=${__from}&to=${__to})  \r\n[HP Feed Pump (P-101)](/d/yr80PM8EBR/hp-feed-pump-p-101?&from=${__from}&to=${__to})  \r\n[IFSG Preheater (E-102)](/d/55YnBKNhPd/ifsg-preheater-e-102?&from=${__from}&to=${__to})  \r\n[IFSG Recirculation pump (P-103) and Seal Flush System](/d/dANZzohcsn/ifsg-recirculation-pump-p-103-and-seal-flush-system?&from=${__from}&to=${__to})  \r\n[IFSG Heater (E-104)](/d/qKW0bWuJQW/ifsg-heater-e-104?&from=${__from}&to=${__to})  \r\n[Steam Separator (V-105)](/d/GYiwb4zY6U/steam-separator-v-105?&from=${__from}&to=${__to})  \r\n[Blowdown Tank (T-106)](/d/IrVo7dudah/blowdown-tank-t-106?&from=${__from}&to=${__to})  \r\n[Flash Vapour Condensor (E-114)](/d/FHN4mcX8lJ/flash-vapour-condensor-e-114?&from=${__from}&to=${__to})  \r\n[Hot oil Recirculation pump (P-108) and Expansion drum (V-111)](/d/6FZqJdQxGj/hot-oil-recirculation-pump-p-108-and-expansion-drum-v-111?&from=${__from}&to=${__to})  \r\n[Hot oil Heater (H-109)](/d/muR6KxA31V/hot-oil-heater-h-109?&from=${__from}&to=${__to})  \r\n[Gas Burner (B-110)](/d/Pu4PVMH1T5/gas-burner-b-110?&from=${__from}&to=${__to})  \r\n[Pop Tank (T-125)](/d/dEF4JcrDkl/pop-tank-t-125?&from=${__from}&to=${__to})  \r\n[Therminol Pop Tank (T-126)](/d/g4SN4o5oTL/therminol-pop-tank-t-126?&from=${__from}&to=${__to})  \r\n[Caustic Injection Pump (P-120)](/d/3n0hXYV96R/caustic-injection-pump-p-120?&from=${__from}&to=${__to})  \r\n[EDTA Injection Pump (P-122)](/d/DKehgbltxl/edta-injection-pump-p-122?&from=${__from}&to=${__to})  \r\n[BFW Tank (T-128)](/d/BqbRd0Ktfz/bfw-tank-t-128?&from=${__from}&to=${__to})  \r\n",
+                "mode": "markdown"
+            },
+            "pluginVersion": "8.4.1",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "marcusolsson-csv-datasource",
+                        "uid": "uhuGgUf7z"
+                    },
+                    "decimalSeparator": ".",
+                    "delimiter": ",",
+                    "header": true,
+                    "ignoreUnknown": false,
+                    "refId": "A",
+                    "schema": [
+                        {
+                            "name": "",
+                            "type": "string"
+                        }
+                    ],
+                    "skipRows": 0
+                }
+            ],
+            "type": "text"
+        }
+    ],
+    "refresh": "",
+    "schemaVersion": 35,
+    "style": "dark",
+    "tags": [
+        "hipvap"
+    ],
+    "templating": {
+        "list": []
+    },
+    "time": {
+        "from": "now-15d",
+        "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "browser",
+    "title": "Assets Board",
+    "uid": "NeDIfi0d3n",
+    "version": 55,
+    "weekStart": ""
+}
