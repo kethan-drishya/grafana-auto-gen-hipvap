@@ -115,7 +115,7 @@
           "header": true,
           "ignoreUnknown": false,
           "measure": "value",
-          "rawQuery": "with ds as (\r\nSELECT tags, CREATE_TIME_SERIES(time, measure_value::double) as _ \r\nFROM $__database.$__table \r\nwhere $__timeFilter\r\ngroup by tags )\r\nSELECT tags, _  from ds\r\n\r\n\r\n",
+          "rawQuery": "with ds as (\r\nSELECT tags, CREATE_TIME_SERIES(time, measure_value::double) as _ \r\nFROM $__database.$__table \r\nwhere $__timeFilter\r\ngroup by tags )\r\nSELECT tags, _  from ds where tags in(${asset_tags})",
           "refId": "A",
           "schema": [
             {
@@ -226,7 +226,7 @@
           "header": true,
           "ignoreUnknown": false,
           "measure": "value",
-          "rawQuery": "SELECT * FROM $__database.$__table where $__timeFilter \r\nand tags = '$Tags' LIMIT 10",
+          "rawQuery": "SELECT * FROM $__database.$__table where $__timeFilter \r\nand tags = ${Tags:singlequote}",
           "refId": "A",
           "schema": [
             {
@@ -303,7 +303,7 @@
           "header": true,
           "ignoreUnknown": false,
           "measure": "value",
-          "rawQuery": "SELECT tags, \r\nmax(measure_value::double) as max_value, \r\nmin(measure_value::double) as min_value,\r\navg(measure_value::double) as avg_value,\r\nstddev(measure_value::double) as std\r\nFROM $__database.$__table group  by tags",
+          "rawQuery": "SELECT tags, \r\nmax(measure_value::double) as max_value, \r\nmin(measure_value::double) as min_value,\r\navg(measure_value::double) as avg_value,\r\nstddev(measure_value::double) as std\r\nFROM $__database.$__table where tags in(${asset_tags}) and $__timeFilter group  by tags",
           "refId": "A",
           "schema": [
             {
@@ -385,7 +385,7 @@
           "header": true,
           "ignoreUnknown": false,
           "measure": "value",
-          "rawQuery": "SELECT  time, measure_value::double FROM $__database.$__table where tags = '$Tags'\r\nand $__timeFilter\r\n",
+          "rawQuery": "SELECT  time, measure_value::double FROM $__database.$__table where tags = ${Tags:singlequote}\r\nand $__timeFilter\r\n",
           "refId": "A",
           "schema": [
             {
