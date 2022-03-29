@@ -124,7 +124,7 @@
             }
           ],
           "skipRows": 0,
-          "table": "\"hipvap-timestream-test\""
+          "table": "\"hipvap-pi-data-table\""
         }
       ],
       "title": "All Tags Timeseries",
@@ -235,7 +235,7 @@
             }
           ],
           "skipRows": 0,
-          "table": "\"hipvap-timestream-test\""
+          "table": "\"hipvap-pi-data-table\""
         }
       ],
       "title": "$Tags Timeseries",
@@ -312,7 +312,7 @@
             }
           ],
           "skipRows": 0,
-          "table": "\"hipvap-timestream-test\""
+          "table": "\"hipvap-pi-data-table\""
         }
       ],
       "title": "All Tags Descriptive Stats",
@@ -394,7 +394,7 @@
             }
           ],
           "skipRows": 0,
-          "table": "\"hipvap-timestream-test\""
+          "table": "\"hipvap-pi-data-table\""
         }
       ],
       "title": "$Tags Distribution",
@@ -421,13 +421,13 @@
           "type": "grafana-timestream-datasource",
           "uid": "P45460985913E4ED4"
         },
-        "definition": "SELECT DISTINCT tags FROM \"hipvap-timestreamdb\".\"hipvap-timestream-test\"",
+        "definition": "SELECT DISTINCT tags FROM \"hipvap-timestreamdb\".\"hipvap-pi-data-table\"",
         "hide": 0,
         "includeAll": false,
         "multi": false,
         "name": "Tags",
         "options": [],
-        "query": "SELECT DISTINCT tags FROM \"hipvap-timestreamdb\".\"hipvap-timestream-test\"",
+        "query": "SELECT DISTINCT tags FROM \"hipvap-timestreamdb\".\"hipvap-pi-data-table\"",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,

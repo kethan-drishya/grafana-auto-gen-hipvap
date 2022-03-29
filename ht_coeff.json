@@ -124,7 +124,7 @@
             }
           ],
           "skipRows": 0,
-          "table": "\"hipvap-timestream-test\""
+          "table": "\"hipvap-pi-data-table\""
         }
       ],
       "title": "All Heat Transfer Coeffcients",
@@ -235,7 +235,7 @@
             }
           ],
           "skipRows": 0,
-          "table": "\"hipvap-timestream-test\""
+          "table": "\"hipvap-pi-data-table\""
         }
       ],
       "title": "OVERALL",
@@ -337,7 +337,7 @@
             }
           ],
           "skipRows": 0,
-          "table": "\"hipvap-timestream-test\""
+          "table": "\"hipvap-pi-data-table\""
         }
       ],
       "title": "IFSG PREHEATER",
@@ -439,7 +439,7 @@
             }
           ],
           "skipRows": 0,
-          "table": "\"hipvap-timestream-test\""
+          "table": "\"hipvap-pi-data-table\""
         }
       ],
       "title": "IFSG HEATER",
