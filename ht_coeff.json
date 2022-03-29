@@ -115,7 +115,7 @@
           "header": true,
           "ignoreUnknown": false,
           "measure": "value",
-          "rawQuery": "with ds as (\r\nSELECT tag, CREATE_TIME_SERIES(time, measure_value::double) as _ \r\nFROM $__database.$__table \r\nwhere $__timeFilter\r\ngroup by tag )\r\nselect tag, _  from ds\r\n\r\n\r\n",
+          "rawQuery": "with ds as (\r\nSELECT tags, CREATE_TIME_SERIES(time, measure_value::double) as _ \r\nFROM $__database.$__table \r\nwhere $__timeFilter\r\ngroup by tags )\r\nselect tags, _  from ds\r\n\r\n\r\n",
           "refId": "A",
           "schema": [
             {
@@ -217,7 +217,7 @@
           "header": true,
           "ignoreUnknown": false,
           "measure": "value",
-          "rawQuery": "SELECT * FROM $__database.$__table where $__timeFilter \r\nand tag = 'OVERALL' LIMIT 10",
+          "rawQuery": "SELECT * FROM $__database.$__table where $__timeFilter \r\nand tags = 'OVERALL' LIMIT 10",
           "refId": "A",
           "schema": [
             {
@@ -319,7 +319,7 @@
           "header": true,
           "ignoreUnknown": false,
           "measure": "value",
-          "rawQuery": "SELECT * FROM $__database.$__table where $__timeFilter \r\nand tag = 'IFSG PREHEATER' LIMIT 10",
+          "rawQuery": "SELECT * FROM $__database.$__table where $__timeFilter \r\nand tags = 'IFSG PREHEATER' LIMIT 10",
           "refId": "A",
           "schema": [
             {
@@ -421,7 +421,7 @@
           "header": true,
           "ignoreUnknown": false,
           "measure": "value",
-          "rawQuery": "SELECT * FROM $__database.$__table where $__timeFilter \r\nand tag = 'IFSG HEATER' LIMIT 10",
+          "rawQuery": "SELECT * FROM $__database.$__table where $__timeFilter \r\nand tags = 'IFSG HEATER' LIMIT 10",
           "refId": "A",
           "schema": [
             {
