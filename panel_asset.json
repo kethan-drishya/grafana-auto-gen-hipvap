@@ -128,6 +128,15 @@
         }
       ],
       "title": "All Tags Timeseries",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(_)",
+            "renamePattern": " "
+          }
+        }
+      ],
       "transparent": true,
       "type": "timeseries"
     },

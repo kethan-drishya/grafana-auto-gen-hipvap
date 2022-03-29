@@ -128,6 +128,15 @@
         }
       ],
       "title": "All Heat Transfer Coeffcients",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(_)",
+            "renamePattern": " "
+          }
+        }
+      ],
       "transparent": true,
       "type": "timeseries"
     },
