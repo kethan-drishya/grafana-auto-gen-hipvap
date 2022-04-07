@@ -21,11 +21,24 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 34,
-  "iteration": 1648302103708,
+  "id": 41,
+  "iteration": 1649330725432,
   "links": [],
   "liveNow": false,
   "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 43,
+      "panels": [],
+      "title": "All and Overall HT Coefficients",
+      "type": "row"
+    },
     {
       "datasource": {
         "type": "grafana-timestream-datasource",
@@ -88,7 +101,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 0
+        "y": 1
       },
       "id": 39,
       "options": {
@@ -115,7 +128,7 @@
           "header": true,
           "ignoreUnknown": false,
           "measure": "value",
-          "rawQuery": "with ds as (\r\nSELECT tags, CREATE_TIME_SERIES(time, measure_value::double) as _ \r\nFROM $__database.$__table \r\nwhere $__timeFilter\r\ngroup by tags )\r\nselect tags, _  from ds\r\n\r\n\r\n",
+          "rawQuery": "with ds as (\r\nSELECT tags, CREATE_TIME_SERIES(time, measure_value::double) as _ \r\nFROM $__database.$__table \r\nwhere $__timeFilter and tags in('E102HTCC_U', 'E104HTCC_U')\r\ngroup by tags )\r\nselect tags, _  from ds\r\n\r\n\r\n",
           "refId": "A",
           "schema": [
             {
@@ -148,7 +161,8 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "fixedColor": "green",
+            "mode": "fixed"
           },
           "custom": {
             "axisLabel": "",
@@ -178,108 +192,7 @@
               "mode": "off"
             }
           },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 0
-      },
-      "id": 32,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.4.1",
-      "targets": [
-        {
-          "database": "\"hipvap-timestreamdb\"",
-          "datasource": {
-            "type": "grafana-timestream-datasource",
-            "uid": "rxGJdfL7z"
-          },
-          "decimalSeparator": ".",
-          "delimiter": ",",
-          "header": true,
-          "ignoreUnknown": false,
-          "measure": "value",
-          "rawQuery": "SELECT * FROM $__database.$__table where $__timeFilter \r\nand tags = 'OVERALL' LIMIT 10",
-          "refId": "A",
-          "schema": [
-            {
-              "name": "",
-              "type": "string"
-            }
-          ],
-          "skipRows": 0,
-          "table": "\"hipvap-pi-data-table\""
-        }
-      ],
-      "title": "OVERALL",
-      "transparent": true,
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "grafana-timestream-datasource",
-        "uid": "rxGJdfL7z"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
+          "displayName": "$OVERALL",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -300,10 +213,10 @@
       "gridPos": {
         "h": 8,
         "w": 11,
-        "x": 1,
-        "y": 8
+        "x": 13,
+        "y": 1
       },
-      "id": 40,
+      "id": 53,
       "options": {
         "legend": {
           "calcs": [],
@@ -328,7 +241,7 @@
           "header": true,
           "ignoreUnknown": false,
           "measure": "value",
-          "rawQuery": "SELECT * FROM $__database.$__table where $__timeFilter \r\nand tags = 'IFSG PREHEATER' LIMIT 10",
+          "rawQuery": "SELECT time, tags, measure_value::double FROM $__database.$__table where $__timeFilter \r\nand tags = trim(split(${OVERALL:singlequote},'-')[1])",
           "refId": "A",
           "schema": [
             {
@@ -340,111 +253,662 @@
           "table": "\"hipvap-pi-data-table\""
         }
       ],
-      "title": "IFSG PREHEATER",
+      "title": "$OVERALL",
+      "transformations": [],
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "grafana-timestream-datasource",
-        "uid": "rxGJdfL7z"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
+      "collapsed": true,
       "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 8
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 9
       },
-      "id": 41,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.4.1",
-      "targets": [
+      "id": 45,
+      "panels": [
         {
-          "database": "\"hipvap-timestreamdb\"",
           "datasource": {
             "type": "grafana-timestream-datasource",
             "uid": "rxGJdfL7z"
           },
-          "decimalSeparator": ".",
-          "delimiter": ",",
-          "header": true,
-          "ignoreUnknown": false,
-          "measure": "value",
-          "rawQuery": "SELECT * FROM $__database.$__table where $__timeFilter \r\nand tags = 'IFSG HEATER' LIMIT 10",
-          "refId": "A",
-          "schema": [
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "fixedColor": "green",
+                "mode": "fixed"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "displayName": "$IPHU",
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 11,
+            "x": 0,
+            "y": 11
+          },
+          "id": 50,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.4.1",
+          "targets": [
             {
-              "name": "",
-              "type": "string"
+              "database": "\"hipvap-timestreamdb\"",
+              "datasource": {
+                "type": "grafana-timestream-datasource",
+                "uid": "rxGJdfL7z"
+              },
+              "decimalSeparator": ".",
+              "delimiter": ",",
+              "header": true,
+              "ignoreUnknown": false,
+              "measure": "value",
+              "rawQuery": "SELECT time, tags, measure_value::double FROM $__database.$__table where $__timeFilter \r\nand tags = trim(split(${IPHU:singlequote},'-')[1])",
+              "refId": "A",
+              "schema": [
+                {
+                  "name": "",
+                  "type": "string"
+                }
+              ],
+              "skipRows": 0,
+              "table": "\"hipvap-pi-data-table\""
             }
           ],
-          "skipRows": 0,
-          "table": "\"hipvap-pi-data-table\""
+          "title": "$IPHU",
+          "transparent": true,
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "rxGJdfL7z"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "fixedColor": "green",
+                "mode": "fixed"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "displayName": "$IPHQ",
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 11,
+            "x": 11,
+            "y": 11
+          },
+          "id": 51,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.4.1",
+          "targets": [
+            {
+              "database": "\"hipvap-timestreamdb\"",
+              "datasource": {
+                "type": "grafana-timestream-datasource",
+                "uid": "rxGJdfL7z"
+              },
+              "decimalSeparator": ".",
+              "delimiter": ",",
+              "header": true,
+              "ignoreUnknown": false,
+              "measure": "value",
+              "rawQuery": "SELECT time, tags, measure_value::double FROM $__database.$__table where $__timeFilter \r\nand tags = trim(split(${IPHQ:singlequote},'-')[1])",
+              "refId": "A",
+              "schema": [
+                {
+                  "name": "",
+                  "type": "string"
+                }
+              ],
+              "skipRows": 0,
+              "table": "\"hipvap-pi-data-table\""
+            }
+          ],
+          "title": "$IPHQ",
+          "transparent": true,
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "rxGJdfL7z"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "fixedColor": "green",
+                "mode": "fixed"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "displayName": "$IPHP",
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 11,
+            "x": 0,
+            "y": 19
+          },
+          "id": 52,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.4.1",
+          "targets": [
+            {
+              "database": "\"hipvap-timestreamdb\"",
+              "datasource": {
+                "type": "grafana-timestream-datasource",
+                "uid": "rxGJdfL7z"
+              },
+              "decimalSeparator": ".",
+              "delimiter": ",",
+              "header": true,
+              "ignoreUnknown": false,
+              "measure": "value",
+              "rawQuery": "SELECT time, tags, measure_value::double FROM $__database.$__table where $__timeFilter \r\nand tags = trim(split(${IPHP:singlequote},'-')[1])",
+              "refId": "A",
+              "schema": [
+                {
+                  "name": "",
+                  "type": "string"
+                }
+              ],
+              "skipRows": 0,
+              "table": "\"hipvap-pi-data-table\""
+            }
+          ],
+          "title": "$IPHP",
+          "transparent": true,
+          "type": "timeseries"
         }
       ],
-      "title": "IFSG HEATER",
-      "transparent": true,
-      "type": "timeseries"
+      "title": "IFSG Pre Heater",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 10
+      },
+      "id": 47,
+      "panels": [
+        {
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "rxGJdfL7z"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "fixedColor": "green",
+                "mode": "fixed"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "displayName": "$IHU",
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 11,
+            "x": 0,
+            "y": 10
+          },
+          "id": 41,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.4.1",
+          "targets": [
+            {
+              "database": "\"hipvap-timestreamdb\"",
+              "datasource": {
+                "type": "grafana-timestream-datasource",
+                "uid": "rxGJdfL7z"
+              },
+              "decimalSeparator": ".",
+              "delimiter": ",",
+              "header": true,
+              "ignoreUnknown": false,
+              "measure": "value",
+              "rawQuery": "SELECT time, tags, measure_value::double FROM $__database.$__table where $__timeFilter \r\nand tags = trim(split(${IHU:singlequote},'-')[1])",
+              "refId": "A",
+              "schema": [
+                {
+                  "name": "",
+                  "type": "string"
+                }
+              ],
+              "skipRows": 0,
+              "table": "\"hipvap-pi-data-table\""
+            }
+          ],
+          "title": "$IHU",
+          "transparent": true,
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "rxGJdfL7z"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "fixedColor": "green",
+                "mode": "fixed"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "displayName": "$IHQ",
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 11,
+            "x": 12,
+            "y": 10
+          },
+          "id": 48,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.4.1",
+          "targets": [
+            {
+              "database": "\"hipvap-timestreamdb\"",
+              "datasource": {
+                "type": "grafana-timestream-datasource",
+                "uid": "rxGJdfL7z"
+              },
+              "decimalSeparator": ".",
+              "delimiter": ",",
+              "header": true,
+              "ignoreUnknown": false,
+              "measure": "value",
+              "rawQuery": "SELECT time, tags, measure_value::double FROM $__database.$__table where $__timeFilter \r\nand tags = trim(split(${IHQ:singlequote},'-')[1])",
+              "refId": "A",
+              "schema": [
+                {
+                  "name": "",
+                  "type": "string"
+                }
+              ],
+              "skipRows": 0,
+              "table": "\"hipvap-pi-data-table\""
+            }
+          ],
+          "title": "$IHQ",
+          "transparent": true,
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "rxGJdfL7z"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "fixedColor": "green",
+                "mode": "fixed"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "displayName": "$IHP",
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 11,
+            "x": 0,
+            "y": 18
+          },
+          "id": 49,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.4.1",
+          "targets": [
+            {
+              "database": "\"hipvap-timestreamdb\"",
+              "datasource": {
+                "type": "grafana-timestream-datasource",
+                "uid": "rxGJdfL7z"
+              },
+              "decimalSeparator": ".",
+              "delimiter": ",",
+              "header": true,
+              "ignoreUnknown": false,
+              "measure": "value",
+              "rawQuery": "SELECT time, tags, measure_value::double FROM $__database.$__table where $__timeFilter \r\nand tags = trim(split(${IHP:singlequote},'-')[1])",
+              "refId": "A",
+              "schema": [
+                {
+                  "name": "",
+                  "type": "string"
+                }
+              ],
+              "skipRows": 0,
+              "table": "\"hipvap-pi-data-table\""
+            }
+          ],
+          "title": "$IHP",
+          "transparent": true,
+          "type": "timeseries"
+        }
+      ],
+      "title": "IFSG Heater",
+      "type": "row"
     }
   ],
   "refresh": "",
@@ -454,7 +918,57 @@
     "hipvap"
   ],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "hide": 2,
+        "name": "IPHU",
+        "query": "E102HTCC_U - E-102 Heat Transfer Coefficient Calculation",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "name": "IPHP",
+        "query": "E102HDC_TF_P - E-102 Density Calculation on Thermal Fluid side",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "name": "IPHQ",
+        "query": "E102HDC_TF_Q - E-102 Heat Duty Calculation on Thermal Fluid side",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "name": "IHU",
+        "query": "E104HTCC_U - E-104 Heat Transfer Coefficient Calculation",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "name": "IHQ",
+        "query": "E104HDC_TF_Q - E-104 Heat Duty Calculation on Thermal Fluid side",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "name": "IHP",
+        "query": "E104HDC_TF_P - E-104 Density Calculation on Thermal Fluid side",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "name": "OVERALL",
+        "query": "OVERALL - DESCRIPTION",
+        "skipUrlSync": false,
+        "type": "constant"
+      }
+    ]
   },
   "time": {
     "from": "now-24h",
