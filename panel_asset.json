@@ -148,7 +148,8 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "fixedColor": "green",
+            "mode": "fixed"
           },
           "custom": {
             "axisLabel": "",
@@ -178,6 +179,7 @@
               "mode": "off"
             }
           },
+          "displayName": "$Tags",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -226,7 +228,7 @@
           "header": true,
           "ignoreUnknown": false,
           "measure": "value",
-          "rawQuery": "SELECT * FROM $__database.$__table where $__timeFilter \r\nand tags = ${Tags:singlequote}",
+          "rawQuery": "SELECT time, measure_value::double FROM $__database.$__table where $__timeFilter \r\nand tags = trim(split(${Tags:singlequote},'-')[1])",
           "refId": "A",
           "schema": [
             {
@@ -327,18 +329,38 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "fixedColor": "green",
+            "mode": "fixed"
           },
           "custom": {
-            "fillOpacity": 80,
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "lineWidth": 1
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
+          "displayName": "$Tags",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -352,8 +374,7 @@
                 "value": 80
               }
             ]
-          },
-          "unit": "short"
+          }
         },
         "overrides": []
       },
@@ -385,7 +406,7 @@
           "header": true,
           "ignoreUnknown": false,
           "measure": "value",
-          "rawQuery": "SELECT  time, measure_value::double FROM $__database.$__table where tags = ${Tags:singlequote}\r\nand $__timeFilter\r\n",
+          "rawQuery": "SELECT  time, measure_value::double FROM $__database.$__table where tags = trim(split(${Tags:singlequote},'-')[1])\r\nand $__timeFilter\r\n",
           "refId": "A",
           "schema": [
             {
