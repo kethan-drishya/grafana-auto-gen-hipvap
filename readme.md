@@ -6,13 +6,17 @@ Queries a data source having a backend implementation
 
 ### Resource Information
 
-Method and URI - POST [https://hipvap-pilot-test.brains-qa.drishya.ai/api/ds/query Data ](https://hipvap-pilot-test.brains-qa.drishya.ai/api/ds/query)Format - JSON
+Method and URI - POST [https://hipvap-pilot-test.brains-qa.drishya.ai/api/ds/query](https://hipvap-pilot-test.brains-qa.drishya.ai/api/ds/query)
+
+Data Format - JSON
 
 ### Request
 
 #### Headers
 
-Authorization - string - Must be Bearer , where is obtained via OAuth Content-Type  - string - Must be application/json
+Authorization - string - Must be Bearer , where is obtained via OAuth
+
+Content-Type  - string - Must be application/json
 
 #### Body Structure
 
