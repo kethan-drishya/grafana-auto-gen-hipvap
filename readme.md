@@ -160,7 +160,7 @@ Code Description
 
 ### Example Request:
 ```
-curl -v 'https://hipvap-pilot-test.brains-qa.drishya.ai/api/ds/query'\ ![](Aspose.Words.1a08c387-8856-49f7-be50-f71755a84f37.006.png)
+curl -v 'https://hipvap-pilot-test.brains-qa.drishya.ai/api/ds/query'\ 
 
 -X 'POST' \ 
 
